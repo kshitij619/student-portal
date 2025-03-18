@@ -44,22 +44,60 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(20),
             child: GridView.count(
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 20,
               crossAxisCount: 2,
               children: [
-                ElevatedButton(
-                  // width: 100,
-                  // height: 100,
-                  // color: Colors.white,
-                  onPressed: () {},
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black,
+                        blurRadius: BorderSide.strokeAlignOutside,
+                        offset: Offset(1, 1),
+                        blurStyle: BlurStyle.outer,
+                      ),
+                    ],
+                  ),
                   child: Column(
                     children: [
                       Icon(Icons.person_2),
                       const Text('Personal Data'),
                     ],
                   ),
-                )
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black,
+                        blurRadius: BorderSide.strokeAlignOutside,
+                        offset: Offset(1, 1),
+                        blurStyle: BlurStyle.outer,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Icon(Icons.person_2),
+                      const Text('Personal Data'),
+                    ],
+                  ),
+                ),
               ],
             ),
           )
