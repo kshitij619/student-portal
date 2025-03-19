@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project_sem_6/dashboard/view/widgets/navigation_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -39,7 +40,7 @@ class HomePage extends StatelessWidget {
             child: Transform.scale(
               scale: 3.5,
               child: Image.asset(
-                'lib/assets/bgCircle.png',
+                'lib/assets/images/bgCircle.png',
               ),
             ),
           ),
@@ -50,54 +51,14 @@ class HomePage extends StatelessWidget {
               crossAxisSpacing: 20,
               crossAxisCount: 2,
               children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black,
-                        blurRadius: BorderSide.strokeAlignOutside,
-                        offset: Offset(1, 1),
-                        blurStyle: BlurStyle.outer,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      Icon(Icons.person_2),
-                      const Text('Personal Data'),
-                    ],
-                  ),
+                NavigationButton(
+                  icon: Icons.person_2,
+                  label: 'Personal Data',
                 ),
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black,
-                        blurRadius: BorderSide.strokeAlignOutside,
-                        offset: Offset(1, 1),
-                        blurStyle: BlurStyle.outer,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      Icon(Icons.person_2),
-                      const Text('Personal Data'),
-                    ],
-                  ),
-                ),
+                NavigationButton(
+                  icon: Icons.abc,
+                  label: 'ABC',
+                )
               ],
             ),
           )
