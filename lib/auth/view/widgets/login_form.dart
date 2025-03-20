@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project_sem_6/dashboard/view/screens/dashboard_page.dart';
 import 'package:mini_project_sem_6/dashboard/view/screens/home_page.dart';
 
 class LoginForm extends StatelessWidget {
