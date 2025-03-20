@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project_sem_6/dashboard/view/screens/dashboard_page.dart';
+import 'package:mini_project_sem_6/dashboard/view/screens/home_page.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -38,19 +39,13 @@ class LoginForm extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const DashboardPage()));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
                   },
                   child: Text('Login'),
-                ),
-              ),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const DashboardPage()));
-                  },
-                  child: Text('Login with Google'),
                 ),
               ),
             ],

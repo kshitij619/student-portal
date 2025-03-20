@@ -12,7 +12,7 @@ class StudentDetails extends StatelessWidget {
     'phone': 8591224915,
     'address': 'Mumbai',
     'gender': Gender.male,
-    'image': 'assets/student_profile_demo.jpg',
+    'image': 'assets/images/student_profile_demo.jpg',
     'department': 'Computer Engineering',
     'dob': '19/06/2004',
   };

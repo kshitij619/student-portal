@@ -1,5 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project_sem_6/dashboard/view/widgets/app_bar_title_widget.dart';
+import 'package:mini_project_sem_6/dashboard/view/widgets/default_icon.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/navigation_button.dart';
+
+List<Map<String, String>> navigationButtonList = [
+  {
+    'svgIcon': 'assets/images/prediction.svg',
+    'label': 'Predict Placement',
+    'navigationRoute': 'prediction',
+  },
+  {
+    'svgIcon': 'assets/images/personal_data.svg',
+    'label': 'Personal Data',
+    'navigationRoute': 'dashboard',
+  },
+  {
+    'svgIcon': 'assets/images/result.svg',
+    'label': 'Result',
+    'navigationRoute': 'result',
+  },
+  {
+    'svgIcon': 'assets/images/attendance.svg',
+    'label': 'Attendance',
+    'navigationRoute': 'attendance',
+  },
+];
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,24 +39,19 @@ class HomePage extends StatelessWidget {
           Icons.person,
           size: 80,
         ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Student Full Name',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            Text(
-              '223063101',
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-          ],
-        ),
+        title: AppBarTitleWidget(),
         backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+            icon: DefaultIcon(
+              icon: Icons.logout_rounded,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: [
@@ -40,7 +60,7 @@ class HomePage extends StatelessWidget {
             child: Transform.scale(
               scale: 3.5,
               child: Image.asset(
-                'lib/assets/images/bgCircle.png',
+                'assets/images/bgCircle.png',
               ),
             ),
           ),
@@ -50,20 +70,25 @@ class HomePage extends StatelessWidget {
               mainAxisSpacing: 20,
               crossAxisSpacing: 20,
               crossAxisCount: 2,
-              children: [
-                NavigationButton(
-                  icon: Icons.person_2,
-                  label: 'Personal Data',
-                ),
-                NavigationButton(
-                  icon: Icons.abc,
-                  label: 'ABC',
-                )
-              ],
+              children: navigationButtonBuilder(),
             ),
           )
         ],
       ),
     );
+  }
+
+  List<Widget> navigationButtonBuilder() {
+    List<Widget> list = [];
+    for (final buttonData in navigationButtonList) {
+      list.add(
+        NavigationButton(
+          svgIcon: buttonData['svgIcon'],
+          label: buttonData['label'],
+          navigationRoute: buttonData['navigationRoute'].toString(),
+        ),
+      );
+    }
+    return list;
   }
 }
