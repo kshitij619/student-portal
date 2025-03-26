@@ -12,7 +12,7 @@ class Application extends StatelessWidget {
       create: (_) => AuthService(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: AuthWrapper(),
+        home: const AuthWrapper(),
         theme: ThemeData.from(
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.deepPurple,

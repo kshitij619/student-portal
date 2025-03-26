@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project_sem_6/auth/view-model/auth_service.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/app_bar_title_widget.dart';
+import 'package:mini_project_sem_6/widgets/chat_bot_icon.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/default_icon.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/navigation_button.dart';
+import 'package:provider/provider.dart';
 
 List<Map<String, String>> navigationButtonList = [
   {
@@ -31,6 +34,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
@@ -48,11 +52,12 @@ class HomePage extends StatelessWidget {
               color: Colors.black,
             ),
             onPressed: () {
-              Navigator.of(context).pop();
+              authService.signOut();
             },
           ),
         ],
       ),
+      floatingActionButton: const ChatBotIcon(),
       body: Stack(
         children: [
           Transform.translate(

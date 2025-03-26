@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project_sem_6/widgets/chat_bot_icon.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/default_icon.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/student_details.dart';
 
@@ -28,18 +29,7 @@ class DashboardPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(
-            const Color.fromARGB(255, 195, 236, 255),
-          ),
-        ),
-        onPressed: () {},
-        child: Icon(
-          Icons.chat_bubble,
-          color: Colors.black,
-        ),
-      ),
+      floatingActionButton: const ChatBotIcon(),
       body: StudentDetails(),
     );
   }

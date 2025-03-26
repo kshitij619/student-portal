@@ -51,18 +51,13 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed: () async {
                     try {
                       await authService.signInWithEmail(
-                        emailController.toString(),
-                        passwordController.toString(),
+                        emailController.text,
+                        passwordController.text,
                       );
                     } catch (e) {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text(e.toString())));
                     }
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const HomePage(),
-                    //   ),
-                    // );
                   },
                   child: Text('Login'),
                 ),
