@@ -8,7 +8,7 @@ class ChatBotScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
+    // final authService = Provider.of<AuthService>(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
