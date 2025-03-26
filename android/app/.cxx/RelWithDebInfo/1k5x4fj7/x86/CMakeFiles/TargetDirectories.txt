@@ -1,0 +1,2 @@
+A:/Documents/Studies/mini_project_sem_6/android/app/.cxx/RelWithDebInfo/1k5x4fj7/x86/CMakeFiles/edit_cache.dir
+A:/Documents/Studies/mini_project_sem_6/android/app/.cxx/RelWithDebInfo/1k5x4fj7/x86/CMakeFiles/rebuild_cache.dir
