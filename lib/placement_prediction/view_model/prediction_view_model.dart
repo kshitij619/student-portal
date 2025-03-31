@@ -4,16 +4,24 @@ import 'package:flutter/cupertino.dart';
 
 class PredictionViewModel extends ChangeNotifier {
   String predictionString = '';
-  void predictPlacementProbability({
-    required double? cgpa,
-    required int? internships,
-    required int? currentYear,
-    required String? department,
-    required String? skills,
-  }) {
+
+  final cgpaController = TextEditingController();
+  String? majorProjectController;
+  String? miniProjectController;
+  String? internshipsController;
+  final departmentController = TextEditingController();
+  final skillsController = TextEditingController();
+
+/*
+*
+*
+*
+*
+*
+*/
+  void predictPlacementProbability() {
     predictionString =
-        '${cgpa.toString()} ${internships.toString()} ${currentYear.toString()} $department $skills';
-    log(predictionString);
+        '${cgpaController.text}  ${majorProjectController.toString()} ${miniProjectController.toString()} ${internshipsController.toString()}'; //$departmentController $skillsController';
     notifyListeners();
   }
 }
