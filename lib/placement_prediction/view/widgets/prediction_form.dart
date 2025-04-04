@@ -283,11 +283,11 @@ class _PredictionFormState extends State<PredictionForm> {
                   SizedBox(height: 32),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () async {
+                      onPressed: () {
                         setState(() {
                           log(prediction.toString());
                         });
-                        await _service.getPredictionResult();
+                        // await _service.getPredictionResult();
                         _onPredictionButtonPressed(context);
                       },
                       child: Text('Predict'),

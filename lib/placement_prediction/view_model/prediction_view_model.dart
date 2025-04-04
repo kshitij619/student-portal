@@ -41,7 +41,7 @@ class PredictionViewModel extends ChangeNotifier {
         hackathonsController as int,
       ],
     };
-    predictionString = await _service.getPredictionResult();
+    predictionString = await _service.getPredictionResult(predictionList);
 
     notifyListeners();
   }

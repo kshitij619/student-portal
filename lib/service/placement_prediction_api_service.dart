@@ -6,23 +6,23 @@ import 'package:http/http.dart' as http;
 class PlacementPredictionApiService {
   final String _baseUrl = "https://mini06.onrender.com/predict";
 
-  Map<String, dynamic> requestData = {
-    "input": [
-      8.5, // CGPA
-      2, // Major Projects
-      3, // Workshops/Certifications
-      1, // Mini Projects
-      5, // Skills
-      7, // Communication Skill Rating
-      85, // 12th Percentage
-      90, // 10th Percentage
-      0, // Backlogs
-      1, // Internship_Yes
-      0 // Hackathon_Yes
-    ]
-  };
+  // Map<String, dynamic> requestData = {
+  //   "input": [
+  //     8.5, // CGPA
+  //     2, // Major Projects
+  //     3, // Workshops/Certifications
+  //     1, // Mini Projects
+  //     5, // Skills
+  //     7, // Communication Skill Rating
+  //     85, // 12th Percentage
+  //     90, // 10th Percentage
+  //     0, // Backlogs
+  //     1, // Internship_Yes
+  //     0 // Hackathon_Yes
+  //   ]
+  // };
 
-  Future<String> getPredictionResult() async {
+  Future<String> getPredictionResult(Map<String, dynamic> requestData) async {
     log('getPredictionResult called');
     try {
       final response = await http.post(
