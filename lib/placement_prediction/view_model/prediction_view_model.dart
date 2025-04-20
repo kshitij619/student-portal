@@ -1,15 +1,14 @@
-// import 'dart:developer';
+import 'dart:convert';
+import 'dart:developer';
 
-import 'dart:ffi';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
-import 'package:mini_project_sem_6/service/placement_prediction_api_service.dart';
 
 class PredictionViewModel extends ChangeNotifier {
   String predictionString = '';
-  List predictionList = [];
-  final PlacementPredictionApiService _service =
-      PlacementPredictionApiService();
+  Map<String, dynamic> predictionMap = {};
+
+  bool isLoading = false;
 
   final cgpaController = TextEditingController();
   final twelfthController = TextEditingController();
@@ -23,26 +22,47 @@ class PredictionViewModel extends ChangeNotifier {
   bool? internshipsController;
   bool? hackathonsController;
 
-  void predictPlacementProbability() async {
-    // predictionString =
-    //     'cgpa:${cgpaController.text} major:$majorProjectController mini:$miniProjectController certifications: $certificateController skills:$skillsController communication:$communicationController certificates:$certificateController 10th:${tenthController.text} 12th:${twelfthController.text} backlogs: ${backlogController.text} internships:$internshipsController hackathon:$hackathonsController';
-    Map<String, dynamic> predictionList = {
-      'input': [
-        cgpaController.text as Float,
-        majorProjectController as int,
-        certificateController as int,
-        miniProjectController as int,
-        skillsController as int,
-        communicationController as int,
-        twelfthController as Float,
-        tenthController as Float,
-        backlogController as int,
-        internshipsController as int,
-        hackathonsController as int,
-      ],
-    };
-    predictionString = await _service.getPredictionResult(predictionList);
+  final String _baseUrl = "https://mini06.onrender.com/predict";
 
+  Future<void> getPredictionResult() async {
+    log('getPredictionResult called');
+    isLoading = true;
     notifyListeners();
+
+    try {
+      predictionMap = {
+        'input': [
+          double.parse(cgpaController.text),
+          int.parse(majorProjectController.toString()),
+          int.parse(certificateController.toString()),
+          int.parse(miniProjectController.toString()),
+          int.parse(skillsController.toString()),
+          int.parse(communicationController.toString()),
+          double.parse(twelfthController.text),
+          double.parse(tenthController.text),
+          int.parse(backlogController.text),
+          (internshipsController ?? false) ? 1 : 0,
+          (hackathonsController ?? false) ? 1 : 0,
+        ],
+      };
+
+      final response = await http.post(
+        Uri.parse(_baseUrl),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(predictionMap),
+      );
+
+      log('Response status: ${response.statusCode}');
+      log('Response body: ${response.body}');
+      final decoded = jsonDecode(response.body);
+      final String prediction = decoded['prediction'];
+      log(prediction);
+      predictionString = prediction;
+    } catch (e, s) {
+      throw ('Error: $e', stackTrace: s);
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
   }
 }

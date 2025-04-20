@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mini_project_sem_6/placement_prediction/view/widgets/custom_dropdown_menu.dart';
 import 'package:mini_project_sem_6/placement_prediction/view_model/prediction_view_model.dart';
-import 'package:mini_project_sem_6/service/placement_prediction_api_service.dart';
 import 'package:provider/provider.dart';
 
 List boolList = ['Yes', 'No'];
@@ -22,8 +21,6 @@ class _PredictionFormState extends State<PredictionForm> {
   Widget build(BuildContext context) {
     final predictionViewModel = Provider.of<PredictionViewModel>(context);
     String prediction = context.watch<PredictionViewModel>().predictionString;
-    final PlacementPredictionApiService _service =
-        PlacementPredictionApiService();
 
     return Form(
       key: formKey,
@@ -284,10 +281,6 @@ class _PredictionFormState extends State<PredictionForm> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        setState(() {
-                          log(prediction.toString());
-                        });
-                        // await _service.getPredictionResult();
                         _onPredictionButtonPressed(context);
                       },
                       child: Text('Predict'),
@@ -295,9 +288,12 @@ class _PredictionFormState extends State<PredictionForm> {
                   ),
                   SizedBox(height: 16),
                   Center(
-                    child: Text(
-                      prediction,
-                      style: Theme.of(context).textTheme.headlineMedium,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 24),
+                      child: Text(
+                        prediction,
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
                     ),
                   ),
                 ],
@@ -313,17 +309,8 @@ class _PredictionFormState extends State<PredictionForm> {
     setState(() {
       if (formKey.currentState?.validate() == true) {
         log('Called onPredictionButtonPressed()');
-        context.read<PredictionViewModel>().predictPlacementProbability();
+        context.read<PredictionViewModel>().getPredictionResult();
       }
     });
   }
-
-  // @override
-  // void dispose() {
-  //   cgpaController.dispose();
-  //   internshipsController.dispose();
-  //   departmentController.dispose();
-  //   skillsController.dispose();
-  //   super.dispose();
-  // }
 }

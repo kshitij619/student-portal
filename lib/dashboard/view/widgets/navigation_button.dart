@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mini_project_sem_6/auth/view/login_screen.dart';
 import 'package:mini_project_sem_6/dashboard/view/screens/dashboard_page.dart';
 import 'package:mini_project_sem_6/placement_prediction/view/placement_prediction_provider.dart';
+import 'package:mini_project_sem_6/time_table/daily_timetable.dart';
 
 final ButtonStyle navigationButtonStyle = ElevatedButton.styleFrom(
   minimumSize: Size(100, 100),
@@ -72,7 +73,7 @@ class NavigationButton extends StatelessWidget {
       case 'result':
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const DashboardPage(),
+            builder: (context) => const DailyTimetable(),
           ),
         );
         break;
