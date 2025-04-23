@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 
@@ -24,7 +24,7 @@ class PredictionViewModel extends ChangeNotifier {
 
   final String _baseUrl = "https://mini06.onrender.com/predict";
 
-  Future<void> getPredictionResult() async {
+  Future<void> getPredictionResult(String user) async {
     log('getPredictionResult called');
     isLoading = true;
     notifyListeners();
@@ -58,6 +58,13 @@ class PredictionViewModel extends ChangeNotifier {
       final String prediction = decoded['prediction'];
       log(prediction);
       predictionString = prediction;
+
+      await FirebaseFirestore.instance.collection('predictions').add({
+        'prediction': prediction,
+        'user': user,
+        'timestamp': FieldValue.serverTimestamp(),
+        'parameters': predictionMap['input'],
+      });
     } catch (e, s) {
       throw ('Error: $e', stackTrace: s);
     } finally {

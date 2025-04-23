@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project_sem_6/auth/view-model/auth_service.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/app_bar_title_widget.dart';
-import 'package:mini_project_sem_6/widgets/chat_bot_icon.dart';
+import 'package:mini_project_sem_6/widgets/feedback_icon.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/default_icon.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/navigation_button.dart';
 import 'package:provider/provider.dart';
@@ -18,9 +18,9 @@ List<Map<String, String>> navigationButtonList = [
     'navigationRoute': 'dashboard',
   },
   {
-    'svgIcon': 'assets/images/result.svg',
-    'label': 'Result',
-    'navigationRoute': 'result',
+    'svgIcon': 'assets/images/timetable.svg',
+    'label': 'Timetable',
+    'navigationRoute': 'timetable',
   },
   {
     'svgIcon': 'assets/images/attendance.svg',
@@ -57,11 +57,11 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: const ChatBotIcon(),
+      floatingActionButton: const FeedbackIcon(),
       body: Stack(
         children: [
           Transform.translate(
-            offset: Offset(0, -850),
+            offset: Offset(0, -800),
             child: Transform.scale(
               scale: 3.5,
               child: Image.asset(

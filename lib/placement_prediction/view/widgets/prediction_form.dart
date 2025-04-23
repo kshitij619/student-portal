@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:mini_project_sem_6/auth/view-model/auth_service.dart';
 import 'package:mini_project_sem_6/placement_prediction/view/widgets/custom_dropdown_menu.dart';
 import 'package:mini_project_sem_6/placement_prediction/view_model/prediction_view_model.dart';
 import 'package:provider/provider.dart';
@@ -306,10 +307,14 @@ class _PredictionFormState extends State<PredictionForm> {
   }
 
   _onPredictionButtonPressed(BuildContext context) {
+    final authService = Provider.of<AuthService>(context, listen: false);
+
     setState(() {
       if (formKey.currentState?.validate() == true) {
         log('Called onPredictionButtonPressed()');
-        context.read<PredictionViewModel>().getPredictionResult();
+        context
+            .read<PredictionViewModel>()
+            .getPredictionResult(authService.user?.email as String);
       }
     });
   }

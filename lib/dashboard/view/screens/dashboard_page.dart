@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project_sem_6/widgets/chat_bot_icon.dart';
+import 'package:mini_project_sem_6/widgets/feedback_icon.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/default_icon.dart';
 import 'package:mini_project_sem_6/dashboard/view/widgets/student_details.dart';
 
@@ -29,7 +29,7 @@ class DashboardPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: const ChatBotIcon(),
+      floatingActionButton: const FeedbackIcon(),
       body: StudentDetails(),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_project_sem_6/auth/view-model/auth_service.dart';
 import 'package:mini_project_sem_6/auth/view-model/auth_wrapper.dart';
@@ -12,7 +13,13 @@ class Application extends StatelessWidget {
       create: (_) => AuthService(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const AuthWrapper(),
+        home: AnimatedSplashScreen(
+          splash: 'assets/gif/SplashAnimation.gif',
+          centered: true,
+          splashIconSize: 1200,
+          duration: 3000,
+          nextScreen: const AuthWrapper(),
+        ),
         theme: ThemeData.from(
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.deepPurple,

@@ -70,7 +70,7 @@ class NavigationButton extends StatelessWidget {
           ),
         );
         break;
-      case 'result':
+      case 'timetable':
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => const DailyTimetable(),
