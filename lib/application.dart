@@ -2,6 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_project_sem_6/auth/view-model/auth_service.dart';
 import 'package:mini_project_sem_6/auth/view-model/auth_wrapper.dart';
+import 'package:mini_project_sem_6/student_provider.dart';
 import 'package:provider/provider.dart';
 
 class Application extends StatelessWidget {
@@ -9,8 +10,12 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => AuthService(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthService>(create: (_) => AuthService()),
+        ChangeNotifierProvider<StudentProvider>(
+            create: (_) => StudentProvider()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: AnimatedSplashScreen(
@@ -21,9 +26,7 @@ class Application extends StatelessWidget {
           nextScreen: const AuthWrapper(),
         ),
         theme: ThemeData.from(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple,
-          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
         ),
       ),
     );

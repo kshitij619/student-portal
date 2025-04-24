@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mini_project_sem_6/auth/view-model/auth_service.dart';
+import 'package:mini_project_sem_6/placement_prediction/view/suggestion_page.dart';
 import 'package:mini_project_sem_6/placement_prediction/view/widgets/custom_dropdown_menu.dart';
 import 'package:mini_project_sem_6/placement_prediction/view_model/prediction_view_model.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,8 @@ class _PredictionFormState extends State<PredictionForm> {
   Widget build(BuildContext context) {
     final predictionViewModel = Provider.of<PredictionViewModel>(context);
     String prediction = context.watch<PredictionViewModel>().predictionString;
-
+    List<String> suggestions =
+        context.watch<PredictionViewModel>().suggestionsList;
     return Form(
       key: formKey,
       child: Stack(
@@ -116,13 +118,9 @@ class _PredictionFormState extends State<PredictionForm> {
                         'Skills:',
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
-                      CustomDropdownMenu(
+                      TextField(
                         controller: predictionViewModel.skillsController,
-                        onChanged: (newValue) {
-                          setState(() {
-                            predictionViewModel.skillsController = newValue;
-                          });
-                        },
+                        decoration: InputDecoration(hintText: 'Java, Python'),
                       ),
                     ],
                   ),
@@ -297,6 +295,20 @@ class _PredictionFormState extends State<PredictionForm> {
                       ),
                     ),
                   ),
+                  if (prediction.isNotEmpty) ...[
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => SuggestionPage(
+                                    suggestions: suggestions,
+                                  )));
+                        },
+                        child: const Text('Get suggestion'),
+                      ),
+                    ),
+                  ],
+                  const SizedBox(height: 32),
                 ],
               ),
             ),

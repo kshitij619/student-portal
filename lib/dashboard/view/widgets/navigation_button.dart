@@ -1,9 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mini_project_sem_6/attendance/view/attendance_page.dart';
+import 'package:mini_project_sem_6/attendance/view/attendance_provider.dart';
+import 'package:mini_project_sem_6/attendance/view_model/attendance_view_model.dart';
 import 'package:mini_project_sem_6/auth/view/login_screen.dart';
-import 'package:mini_project_sem_6/dashboard/view/screens/dashboard_page.dart';
+import 'package:mini_project_sem_6/dashboard/dashboard_provider.dart';
 import 'package:mini_project_sem_6/placement_prediction/view/placement_prediction_provider.dart';
 import 'package:mini_project_sem_6/time_table/daily_timetable.dart';
+import 'package:provider/provider.dart';
 
 final ButtonStyle navigationButtonStyle = ElevatedButton.styleFrom(
   minimumSize: Size(100, 100),
@@ -59,7 +65,7 @@ class NavigationButton extends StatelessWidget {
       case 'dashboard':
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const DashboardPage(),
+            builder: (context) => const DashboardProvider(),
           ),
         );
         break;
@@ -80,7 +86,7 @@ class NavigationButton extends StatelessWidget {
       case 'attendance':
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const DashboardPage(),
+            builder: (context) => const AttendanceProvider(),
           ),
         );
         break;

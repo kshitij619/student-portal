@@ -6,6 +6,7 @@ class AuthService with ChangeNotifier {
 
   User? _user;
   User? get user => _user;
+  String? get email => _user?.email;
 
   AuthService() {
     _auth.authStateChanges().listen((User? user) {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project_sem_6/auth/view-model/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class AppBarTitleWidget extends StatelessWidget {
   const AppBarTitleWidget({
@@ -7,21 +9,16 @@ class AppBarTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthService>(context);
     return Padding(
       padding: const EdgeInsets.only(left: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Student Full Name',
+            auth.user?.email as String,
             style: TextStyle(
               fontSize: 18,
-            ),
-          ),
-          Text(
-            '223063101',
-            style: TextStyle(
-              fontSize: 16,
             ),
           ),
         ],
